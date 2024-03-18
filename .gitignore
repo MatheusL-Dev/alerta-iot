@@ -192,3 +192,4 @@ npm-debug.log*
 # Outros
 .DS_Store
 Thumbs.db
+package-lock.json
