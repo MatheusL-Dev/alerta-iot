@@ -1,6 +1,8 @@
 import React from 'react';
-import RadarChartExample from './RadarPanel';
-import PieChartWithNeedle from './FirePanel';
+import RadarPanel from './components/RadarPanel';
+import FirePanel from './components/FirePanel';
+import Button from './components/Button'
+import Sirene from './components/Sirene'
 
 const App = () => {
 
@@ -10,10 +12,16 @@ const App = () => {
         <h1>Painel de Controle de Incêndios</h1>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
-        <PieChartWithNeedle />
+        <Button />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
-        <RadarChartExample />
+        <Sirene />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+        <FirePanel />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+        <RadarPanel />
       </div>
     </div>
   );
