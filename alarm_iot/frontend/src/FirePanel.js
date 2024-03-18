@@ -1,0 +1,68 @@
+import React, { useState, useEffect } from 'react';
+import { PieChart, Pie, Cell } from 'recharts';
+
+const RADIAN = Math.PI / 180;
+const data = [
+  { name: 'A', value: 80, color: '#ff0000' },
+  { name: 'B', value: 45, color: '#00ff00' },
+  { name: 'C', value: 25, color: '#0000ff' },
+];
+
+const cx = 150;
+const cy = 200;
+const iR = 50;
+const oR = 100;
+
+const needle = (value, cx, cy, iR, oR, color) => {
+  const angle = 180 - (value / 100) * 180;
+  const length = (iR + 2 * oR) / 3;
+  const sin = Math.sin(-RADIAN * angle);
+  const cos = Math.cos(-RADIAN * angle);
+  const x0 = cx;
+  const y0 = cy;
+  const xp = x0 + length * cos;
+  const yp = y0 + length * sin;
+
+  return [
+    <path key="needle" d={`M${x0} ${y0} L${xp} ${yp}`} stroke={color} strokeWidth="2" fill="none" />,
+  ];
+};
+
+const PieChartWithNeedle = () => {
+  const [value, setValue] = useState(50); // Valor inicial do ponteiro
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://127.0.0.1:8000/gas/');
+      const data = await response.json();
+      setValue(data);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <PieChart width={400} height={300}>
+        <Pie
+          dataKey="value"
+          startAngle={180}
+          endAngle={0}
+          data={data}
+          cx={cx}
+          cy={cy}
+          innerRadius={iR}
+          outerRadius={oR}
+          fill="#8884d8"
+          stroke="none"
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={entry.color} />
+          ))}
+        </Pie>
+        {needle(value, cx, cy, iR, oR, '#d0d000')}
+      </PieChart>
+    </div>
+  );
+};
+
+export default PieChartWithNeedle;
