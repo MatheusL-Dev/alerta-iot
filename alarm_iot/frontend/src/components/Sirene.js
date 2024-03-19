@@ -17,7 +17,7 @@ const FireAlarm = () => {
 
     return (
         <div>
-            <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: isFire ? 'red' : 'grey', margin: '20px', animation: isFire ? 'blink 1s linear infinite' : 'none' }}></div>
+            <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: isFire ? 'red' : 'grey', margin: '5px', animation: isFire ? 'blink 1s linear infinite' : 'none' }}></div>
             <style>
                 {`
                     @keyframes blink {

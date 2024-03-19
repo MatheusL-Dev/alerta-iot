@@ -8,10 +8,10 @@ const data = [
   { name: 'C', value: 25, color: '#ff0000' },
 ];
 
-const cx = 150;
-const cy = 200;
+const cx = 250;
+const cy = 320;
 const iR = 50;
-const oR = 100;
+const oR = 150;
 
 const needle = (value, cx, cy, iR, oR, color) => {
   const angle = 180 - (value / 100) * 180;
@@ -44,7 +44,7 @@ const PieChartWithNeedle = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <PieChart width={400} height={300}>
+        <PieChart width={500} height={500}>
           <Pie
             dataKey="value"
             startAngle={180}

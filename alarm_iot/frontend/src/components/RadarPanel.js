@@ -14,7 +14,7 @@ const RadarChartExample = () => {
   }, []);
 
   return (
-    <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={data}>
+    <RadarChart cx={250} cy={250} outerRadius={150} width={500} height={500} data={data}>
       <PolarGrid />
       <PolarAngleAxis dataKey="sala" />
       <PolarRadiusAxis angle={30} domain={[0, 'dataMax']} />

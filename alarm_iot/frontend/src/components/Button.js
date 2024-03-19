@@ -8,17 +8,17 @@ const Panel = () => {
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>
             <button
                 onClick={handleClick}
                 style={{
                     width: '100px',
-                    height: '50px',
+                    height: '30px',
                     borderRadius: '0',
                     background: isOn ? 'green' : 'red',
                     color: 'white',
                     border: 'none',
-                    fontSize: '16px',
+                    fontSize: '14px',
                     cursor: 'pointer',
                 }}
             >
