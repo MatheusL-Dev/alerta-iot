@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Panel = () => {
-    const [isOn, setIsOn] = useState(false);
-
-    const handleClick = () => {
-        setIsOn(!isOn);
-    };
+const Panel = (props) => {
+    const { handleClick, isOn } = props
 
     return (
         <div style={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>

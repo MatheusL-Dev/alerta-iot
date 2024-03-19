@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
-const RadarChartExample = () => {
-  const [data, setData] = useState([]);
+
+const RadarChartExample = (props) => {
+  const { isOn, value } = props;
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://127.0.0.1:8000/people/');
-      const data = await response.json();
-      setData(data);
-    };
-    fetchData();
-  }, []);
+    if (isOn) {
+      setData(value);
+    } else {
+      setData([
+        { "sala": "Área Comercial", "quantidade": 0 },
+        { "sala": "Área Gerencial", "quantidade": 0 },
+        { "sala": "Área Administrativa", "quantidade": 0 },
+        { "sala": "T.I.", "quantidade": 0 },
+      ]);
+    }
+  }, [isOn, value]);
 
   return (
     <RadarChart cx={250} cy={250} outerRadius={150} width={500} height={500} data={data}>

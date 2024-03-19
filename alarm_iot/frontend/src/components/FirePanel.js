@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 
+
 const RADIAN = Math.PI / 180;
 const data = [
-  { name: 'A', value: 80, color: '#00ff00' },
-  { name: 'B', value: 45, color: '#ffff00' },
+  { name: 'A', value: 50, color: '#00ff00' },
+  { name: 'B', value: 25, color: '#ffff00' },
   { name: 'C', value: 25, color: '#ff0000' },
 ];
 
@@ -28,18 +29,18 @@ const needle = (value, cx, cy, iR, oR, color) => {
   ];
 };
 
-const PieChartWithNeedle = () => {
-  const [value, setValue] = useState(50);
+const PieChartWithNeedle = (props) => {
+  const { isOn, value } = props;
   const labels = ['Baixo', 'Médio', 'Alto'];
+  const [dataValue, setDataValue] = useState(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://127.0.0.1:8000/gas/');
-      const data = await response.json();
-      setValue(data);
-    };
-    fetchData();
-  }, []);
+    if (isOn) {
+      setDataValue(value);
+    } else {
+      setDataValue(0);
+    }
+  }, [isOn, value]);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
@@ -61,7 +62,7 @@ const PieChartWithNeedle = () => {
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
           </Pie>
-          {needle(value, cx, cy, iR, oR, '#d0d000')}
+          {needle(dataValue, cx, cy, iR, oR, '#d0d000')}
         </PieChart>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1px' }}>

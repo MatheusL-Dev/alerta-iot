@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-const FireAlarm = () => {
+
+const FireAlarm = (props) => {
+    const { isOn, value } = props;
     const [isFire, setIsFire] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
+        if (isOn && value > 80) {
             setIsFire(true);
-        };
-
-        const interval = setInterval(() => {
-            fetchData();
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
+        } else {
+            setIsFire(false);
+        }
+    }, [isOn, value]);
 
     return (
         <div>
