@@ -50,7 +50,7 @@ class Simulador():
 
 
     def __init__(self):
-        self.sensor_gas = Sensor("gas", 65, 5, 0, 100)
+        self.sensor_gas = Sensor("gas", 65, 10, 0, 100)
         self.salas = [
             Sala("Área Comercial", 50),
             Sala("Área Gerencial", 30),
@@ -83,8 +83,17 @@ class Simulador():
         all_data = Sensores.objects.all().delete()
 
         while True:
+
             sensor_data = self.get_gas_data()
             sensor_pessoa = self.get_people_data()
+
+            if sensor_data >= 80:
+                self.sensor_gas.desvio_padrao = 1
+                self.sensor_gas.media = 81 
+
+            else:
+                self.sensor_gas.desvio_padrao = 10
+                self.sensor_gas.media = 65
 
             print("Dados do nível de gás:", sensor_data)
             print("Dados da quantidade de pessoas:\n", sensor_pessoa)
