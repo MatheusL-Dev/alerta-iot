@@ -1,22 +1,33 @@
 # alerta-iot
+
 Projeto extensionista da faculdade.
 
-# Como inicializar;
-# Back-End: Garantir o python 3^
-- Na raiz do projeto:
+## Como Inicializar o Back-End
+
+Certifique-se de ter o Python 3^ instalado. Na raiz do projeto, execute os seguintes comandos:
+
+```bash
 pip install -r requirements.txt
 python3 manager.py runserver
+```
 
-# Front-End: Garantir node 16^
-- No diretorio: "/alarm_iot/frontend"
+## Como Inicializar o Front-End
+
+Certifique-se de ter o Node.js 16^ instalado. No diretório "/alarm_iot/frontend", execute os seguintes comandos:
+
+```bash
 npm install
 npm start
+```
 
-# Inicializar o Simulador:
-- Na raiz do projeto:
+## Na raiz do projeto, execute os seguintes comandos para inicializar o simulador:
+
+```bash
+python3 manager.py migrate
 python3 manager.py shell
 from alarm_iot.arduino.simulador import Simulador
 simulador = Simulador()
 simulador.executar()
 
-CTRL + C para finalizar
+Pressione CTRL + C para finalizar a execução do simulador.
+```
